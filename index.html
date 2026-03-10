@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Traceroute Map</title>
+    <meta name="description" content="Roughly 155 characters">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+    <link rel="stylesheet" href="style.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+    <script src="script.js" defer></script>
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+  </head>
+  <body>
+    <h1>Traceroute Map</h1>
+    <p><label for="tracerouteInput">Paste your traceroute output here:</label></p>
+    <textarea id="tracerouteInput" name="tracerouteInput" rows="10" cols="50" placeholder=
+"1    <1 ms    <1 ms    <1 ms  192.168.1.1
+2    <1 ms    <1 ms    <1 ms  142.251.55.199
+3    <1 ms    <1 ms    <1 ms  142.251.46.78"
+    ></textarea>
+
+    <br>
+    <div>
+      <button onclick="parseText()">Map Traceroute</button>
+    </div>
+    <div class="ipStartCheckbox">
+      <input type="checkbox" id="includeSelf" name="includeSelf" checked>
+      <label for="includeSelf">Include my own public IP as starting point</label>
+    </div>
+    <div>
+      <ol id="ipList"></ol>
+      <pre id="jsonOutput"></pre>
+    </div>
+
+    <div id="map" class="map"></div>
+
+  </body>
+</html>
