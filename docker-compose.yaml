@@ -5,3 +5,5 @@ services:
     ports:
       - "8002:80"
     restart: unless-stopped
+    network:
+      - default
