@@ -76,18 +76,19 @@ function renderMap(ipDataArray) {
         attribution: "© OpenStreetMap contributors"
     }).addTo(map);
 
+    var oms = new OverlappingMarkerSpiderfier(map, { keepSpiderfied: true });
+
     const points = [];
 
     for (const [index,info] of ipDataArray.entries()) {
-        let lat = parseFloat(info.latitude);
-        let lon = parseFloat(info.longitude);
+        const lat = parseFloat(info.latitude);
+        const lon = parseFloat(info.longitude);
 
         // Skip if lat/lon are missing, "Not found", or not valid numbers
         if (!info.latitude || !info.longitude || isNaN(lat) || isNaN(lon)) {
             console.log(`Skipping ${info.ip} - no valid coordinates`);
             continue;
         }
-
 
         const coords = [lat, lon];
         points.push(coords);
@@ -100,14 +101,14 @@ function renderMap(ipDataArray) {
             currentIcon = hopIcon;
         }
 
-        L.marker(coords, { icon: currentIcon}).addTo(map)
+        oms.addMarker(L.marker(coords, { icon: currentIcon }).addTo(map)
             .bindPopup(`
                 <b>${index === 0 ? "Start" : index === ipDataArray.length - 1 ? "End" : `Hop ${index}`}</b><br>
                 <b>${info.ip}</b><br>
                 ${info.city || "Unknown City"}, ${info.country_name || ""}<br>
                 ${info.as_entity || ""}<br>
                 ASN: ${info.as || ""}
-            `);
+            `));
     }
 
     if (points.length > 1) {
