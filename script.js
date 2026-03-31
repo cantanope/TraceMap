@@ -24,7 +24,7 @@ function isPrivateIP(ip) {
 
 // Calls API and returns info for a given IP
 async function lookupIP(ip) {
-    const response = await fetch(`http://api.imjoseph.com/v1/ipinfo/${ip}`);
+    const response = await fetch(`https://api.imjoseph.com/v1/ipinfo/${ip}`);
     const data = await response.json();
     return data;
 }

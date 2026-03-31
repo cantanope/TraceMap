@@ -1,9 +1,9 @@
 services:
   traceroutemap:
-    image: cantanope/traceroutemap:latest
+    image: cantanope/traceroutemap_image:latest
     container_name: traceroutemap_container
     ports:
       - "8002:80"
     restart: unless-stopped
-    network:
+    networks:
       - default
