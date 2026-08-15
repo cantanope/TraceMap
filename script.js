@@ -19,7 +19,13 @@ function parseTraceroute(tracerouteText) {
 
 // Checks if IP is private
 function isPrivateIP(ip) {
-    return ip.startsWith("10.") || ip.startsWith("192.168.") || ip.startsWith("172.");
+    if (ip.startsWith("10.") || ip.startsWith("192.168.")) return true;
+    const match = ip.match(/^172\.(\d{1,3})\./);
+    if (match) {
+        const second = parseInt(match[1], 10);
+        return second >= 16 && second <= 31;
+    }
+    return false;
 }
 
 // Calls API and returns info for a given IP
