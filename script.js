@@ -28,7 +28,7 @@ async function lookupIP(ip) {
     const data = await response.json();
     return data;
 }
-
+// Little
 // gets public IP info for the user and returns it as an object, or null if failed (used if "Include my own IP" is checked)
 async function getPublicIP() {
     try {
